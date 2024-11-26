@@ -1,5 +1,13 @@
+import ButtonSearch from "../../components/ButtonSearch/ButtonSearch";
+import CatalogList from "../../components/CatalogList/CatalogList";
+
 const Catalog = () => {
-  return <div></div>;
+  return (
+    <div>
+      <CatalogList />
+      <ButtonSearch />
+    </div>
+  );
 };
 
 export default Catalog;

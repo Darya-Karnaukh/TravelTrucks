@@ -1,0 +1,13 @@
+.containerLocation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  p {
+    color: #101828;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}

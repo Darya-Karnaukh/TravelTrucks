@@ -1,34 +1,14 @@
-import { useSelector } from "react-redux";
 import SvgIcon from "../../hooks/SvgIcon";
-import { selectCampers } from "../../redux/campers/selectors.js";
 import s from "./CatalogList.module.css";
 import ParametersCampers from "../ParametersCampers/ParametersCampers.jsx";
+import Location from "../Location/Location.jsx";
+import { useNavigate } from "react-router-dom";
 
-const formatLocation = (location) => {
-  const parts = location.split(", ");
-  if (parts.length !== 2) {
-    return location;
-  }
-  const [country, city] = parts;
-  return `${city}, ${country}`;
-};
-
-const CatalogList = () => {
-  const campers = useSelector(selectCampers);
-  const loading = useSelector((state) => state.campers.loading);
-  const error = useSelector((state) => state.campers.error);
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  if (!campers.length) {
-    return <p>No campers found. Try searching!</p>;
-  }
-
+const CatalogList = ({ campers }) => {
+  const navigation = useNavigate();
+  const onClick = (id) => {
+    navigation(`/catalog/${id}`);
+  };
   return (
     <ul className={s.wrapper}>
       {campers.map((camper) => (
@@ -59,16 +39,18 @@ const CatalogList = () => {
                 <p>{camper.rating}</p>
                 <p>({camper.reviews.length} Reviews)</p>
               </div>
-              <div className={s.containerLocation}>
-                <SvgIcon name="icon-Map" width="16" height="16" />
-                <p>{formatLocation(camper.location)}</p>
-              </div>
+              <Location location={camper.location} />
             </div>
             <p className={s.description}>{camper.description}</p>
 
             <ParametersCampers parameters={camper} />
 
-            <button className={s.buttonShowMore}>Show more</button>
+            <button
+              onClick={() => onClick(camper.id)}
+              className={s.buttonShowMore}
+            >
+              Show more
+            </button>
           </div>
         </li>
       ))}

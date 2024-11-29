@@ -1,0 +1,113 @@
+.wrapper {
+  max-width: 1440px;
+  width: 100%;
+  height: 1468px;
+  background: #fff;
+  padding: 48px 64px 80px 64px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #101828;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.containerReviewsAndLocation {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.containerReviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.icon {
+  fill: #ffc531;
+}
+
+.price {
+  color: #101828;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin-bottom: 28px;
+}
+
+.containerImages {
+  display: flex;
+  width: 1312px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.image {
+  width: 292px;
+  height: 312px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background-color: lightgray;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.description {
+  width: 1312px;
+  color: #475467;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 60px;
+}
+
+.containerButton {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 24px;
+}
+
+.buttonCamper {
+  position: relative;
+  border: none;
+  background-color: transparent;
+  color: #101828;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.buttonCamper::after {
+  content: "";
+  position: absolute;
+  bottom: -27px;
+  left: 0;
+  width: 85px;
+  height: 5px;
+  background-color: transparent;
+  transform: scaleX(1);
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+.buttonCamper.active::after {
+  background-color: #e44848;
+}
+
+.vector {
+  width: 1312px;
+  height: 1px;
+  flex-shrink: 0;
+  background-color: #dadde1;
+  margin-bottom: 44px;
+}

@@ -111,3 +111,9 @@ h2 {
   background-color: #dadde1;
   margin-bottom: 44px;
 }
+
+.containerFeaturesAndForm {
+  display: flex;
+  width: 1312px;
+  gap: 40px;
+}

@@ -101,9 +101,11 @@ const FormCamper = () => {
         </Form>
       </Formik>
       {isModalOpen && (
-        <div className={s.modal}>
-          <p>Your booking was successful!</p>
-          <button onClick={() => setIsModalOpen(false)}>Close</button>
+        <div className={s.modalBackdrop} onClick={() => setIsModalOpen(false)}>
+          <div className={s.modal} onClick={(e) => e.stopPropagation()}>
+            <p>Your booking was successful!</p>
+            <button onClick={() => setIsModalOpen(false)}>Close</button>
+          </div>
         </div>
       )}
     </div>

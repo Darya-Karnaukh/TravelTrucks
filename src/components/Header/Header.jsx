@@ -1,8 +1,14 @@
 import { NavLink } from "react-router-dom";
 import SvgIcon from "../../hooks/SvgIcon.jsx";
 import s from "../Header/Header.module.css";
+import { useDispatch } from "react-redux";
+import { getCampers } from "../../redux/campers/operations.js";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const onClick = () => {
+    dispatch(getCampers());
+  };
   return (
     <header className={s.header}>
       <NavLink to="/">
@@ -18,6 +24,7 @@ const Header = () => {
           Home
         </NavLink>
         <NavLink
+          onClick={onClick}
           to="/catalog"
           className={({ isActive }) =>
             isActive ? `${s.navigationLink} ${s.activeLink}` : s.navigationLink

@@ -6,10 +6,10 @@ import SvgIcon from "../../hooks/SvgIcon.jsx";
 import Location from "../../components/Location/Location";
 import { useState } from "react";
 import FormCamper from "../../components/FormCamper/FormCamper.jsx";
+import Reviews from "../../components/Reviews/Reviews.jsx";
 
 const Camper = () => {
   const { id } = useParams();
-  console.log("Received ID from URL:", id);
   const campers = useSelector(selectCampers);
   const [activeTab, setActiveTab] = useState("features");
 
@@ -73,7 +73,15 @@ const Camper = () => {
         </button>
       </div>
       <div className={s.vector}></div>
-      <FormCamper />
+      <div className={s.containerFeaturesAndForm}>
+        {activeTab === "features" && (
+          <div>
+            {/* Тут ви можете відобразити компоненти "Features", наприклад */}
+          </div>
+        )}
+        {activeTab === "reviews" && <Reviews reviews={camper.reviews} />}
+        <FormCamper />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,79 @@
+.wrapper {
+  display: flex;
+  width: 631px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 44px;
+}
+
+.containerReviews {
+  display: flex;
+  width: 631px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.person {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.nameAndRating {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  p {
+    color: #101828;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+.iconReviews {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background: #f2f4f7;
+  position: relative;
+
+  p {
+    position: absolute;
+    left: 21px;
+    bottom: 13px;
+    color: #e44848;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+  }
+}
+
+.comment {
+  width: 631px;
+  font-family: Inter;
+  color: #475467;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.starContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.icon {
+  fill: rgba(242, 244, 247, 1);
+  transition: fill 0.3s ease;
+}
+
+.filled {
+  fill: rgba(255, 197, 49, 1);
+}

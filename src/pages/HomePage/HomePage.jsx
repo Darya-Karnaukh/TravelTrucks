@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import s from "../HomePage/HomePage.module.css";
+import { useDispatch } from "react-redux";
+import { getCampers } from "../../redux/campers/operations";
 
 const HomePage = () => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const onClick = () => {
     navigate("/catalog");
+    dispatch(getCampers());
   };
 
   return (

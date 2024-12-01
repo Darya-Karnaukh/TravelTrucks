@@ -66,6 +66,7 @@ p {
 .input:focus,
 .input:active {
   color: #101828;
+  background: #f7f7f7;
 }
 
 .textarea {
@@ -111,6 +112,12 @@ p {
   font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.08px;
+  transition: background-color 0.3s ease;
+}
+
+.sendButton:hover,
+.sendButton:focus {
+  background: #d84343;
 }
 
 .error {

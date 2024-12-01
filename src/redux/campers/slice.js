@@ -19,11 +19,16 @@ const slice = createSlice({
       })
       .addCase(getCampers.fulfilled, (state, action) => {
         state.loading = false;
-        state.campers = action.payload;
+        const existingIds = new Set(state.campers.map((camper) => camper.id));
+        const newItems = action.payload.items.filter(
+          (item) => !existingIds.has(item.id)
+        );
+        state.campers = [...state.campers, ...newItems];
+        state.total = action.payload.total;
       })
       .addCase(getCampers.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || "Something went wrong";
       });
   },
 });

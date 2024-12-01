@@ -54,4 +54,10 @@
   line-height: 24px;
   letter-spacing: -0.08px;
   border: none;
+  transition: background-color 0.3s ease;
+}
+
+.buttonHomePage:hover,
+.buttonHomePage:focus {
+  background: #d84343;
 }

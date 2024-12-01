@@ -1,16 +1,24 @@
 import CatalogList from "../../components/CatalogList/CatalogList.jsx";
 import FilterList from "../../components/FilterList/FilterList.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCampers } from "../../redux/campers/selectors.js";
+import {
+  selectCampers,
+  selectCampersLoading,
+  selectCampersTotal,
+} from "../../redux/campers/selectors.js";
 import { getCampers } from "../../redux/campers/operations.js";
 import { useEffect, useState } from "react";
 import s from "./Catalog.module.css";
+import Loader from "../../components/Loader/Loader.jsx";
 
 const Catalog = () => {
   const campers = useSelector(selectCampers);
-  const loading = useSelector((state) => state.campers.loading);
+  const loading = useSelector(selectCampersLoading);
   const error = useSelector((state) => state.campers.error);
-
+  const total = useSelector(selectCampersTotal);
+  const [page, setPage] = useState(1);
+  const limit = 4;
+  const dispatch = useDispatch();
   const [filters, setFilters] = useState({
     location: "",
     vehicleType: "",
@@ -25,20 +33,13 @@ const Catalog = () => {
     transmission: "",
     engine: "",
   });
-
-  const [filteredCampers, setFilteredCampers] = useState(campers); // Початковий список кемперів
-
-  const dispatch = useDispatch();
+  const [filteredCampers, setFilteredCampers] = useState([]);
+  const [appliedFilters, setAppliedFilters] = useState(null);
 
   useEffect(() => {
-    dispatch(getCampers());
+    dispatch(getCampers({ page: 1, limit }));
   }, [dispatch]);
 
-  useEffect(() => {
-    setFilteredCampers(campers); // Оновлюємо filteredCampers після того, як campers оновиться
-  }, [campers]);
-
-  // Функція для застосування фільтрів
   const applyFilters = (campers, filters) => {
     return campers.filter((camper) => {
       if (
@@ -55,10 +56,9 @@ const Catalog = () => {
       for (const key in filters) {
         if (key === "location") continue;
 
-        if (!filters[key]) continue; // Пропускаємо неактивні фільтри
+        if (!filters[key]) continue;
 
         if (typeof camper[key] === "boolean" && filters[key] !== camper[key]) {
-          // Фільтр для чекбоксів
           return false;
         }
 
@@ -66,7 +66,6 @@ const Catalog = () => {
           typeof camper[key] === "string" &&
           filters[key].toLowerCase() !== camper[key].toLowerCase()
         ) {
-          // Фільтр для рядкових значень
           return false;
         }
       }
@@ -84,16 +83,33 @@ const Catalog = () => {
 
   const handleSearch = () => {
     const result = applyFilters(campers, filters);
-    setFilteredCampers(result);
+    setFilteredCampers(result.slice(0, limit));
+    setAppliedFilters(filters);
+    setPage(1);
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const handleLoadMore = () => {
+    if (loading || (!appliedFilters && campers.length >= total)) return;
+
+    let nextPageData = [];
+
+    if (appliedFilters) {
+      const filtered = applyFilters(campers, appliedFilters);
+      nextPageData = filtered.slice(page * limit, (page + 1) * limit);
+      setFilteredCampers((prev) => [...prev, ...nextPageData]); // додаємо нові кемпери до попередніх
+      setPage(page + 1);
+    } else {
+      const nextPage = page + 1;
+      dispatch(getCampers({ page: nextPage, limit }));
+      setPage(nextPage);
+    }
+  };
 
   if (error) {
     return <p>Error: {error}</p>;
   }
+
+  const campersToShow = appliedFilters ? filteredCampers : campers;
 
   return (
     <div className={s.wrapper}>
@@ -103,10 +119,20 @@ const Catalog = () => {
         onSearch={handleSearch}
       />
 
-      {filteredCampers.length === 0 ? (
-        <p>No campers found with these filters.</p>
+      {loading && !appliedFilters ? (
+        <Loader /> // Показуємо лоадер тільки під час початкового завантаження
       ) : (
-        <CatalogList campers={filteredCampers} />
+        <CatalogList
+          campers={campersToShow}
+          onLoadMore={handleLoadMore}
+          hasMore={
+            appliedFilters
+              ? filteredCampers.length <
+                applyFilters(campers, appliedFilters).length
+              : campers.length < total
+          }
+          loading={loading}
+        />
       )}
     </div>
   );

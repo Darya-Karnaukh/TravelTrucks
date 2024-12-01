@@ -12,7 +12,11 @@ const Features = ({ camper }) => {
         <div className={s.detailsCamper}>
           <div className={s.detail}>
             <p>Form</p>
-            <p>{camper.form.charAt(0).toUpperCase() + camper.form.slice(1)}</p>
+            <p>
+              {camper.form
+                .replace(/([a-z])([A-Z])/g, "$1 $2")
+                .replace(/^./, (str) => str.toUpperCase())}{" "}
+            </p>
           </div>
           <div className={s.detail}>
             <p>Length</p>

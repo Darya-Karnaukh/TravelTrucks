@@ -6,9 +6,10 @@ import { getCampers } from "../../redux/campers/operations";
 const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const limit = 4;
   const onClick = () => {
     navigate("/catalog");
-    dispatch(getCampers());
+    dispatch(getCampers({ page: 1, limit }));
   };
 
   return (

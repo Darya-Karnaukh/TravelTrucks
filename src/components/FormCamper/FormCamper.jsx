@@ -31,6 +31,7 @@ const FormCamper = () => {
         dateFormat="yyyy-MM-dd"
         placeholderText="Booking date*"
         className={s.input}
+        calendarClassName="custom-datepicker"
         wrapperClassName="react-datepicker__input-container"
       />
     );

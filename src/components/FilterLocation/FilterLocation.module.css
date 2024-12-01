@@ -25,11 +25,17 @@
   background: #f7f7f7;
   box-sizing: border-box;
   border: none;
-  color: #101828;
+  color: #6c717b;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   outline: none;
+}
+
+.input:hover,
+.input:focus {
+  background: #f7f7f7;
+  color: #101828;
 }
 
 .containerIcon {

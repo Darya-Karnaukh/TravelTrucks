@@ -1,6 +1,10 @@
 .wrapper {
-  display: flex;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
   gap: 64px;
   padding: 48px 64px;
+  margin: 0 auto;
+  justify-content: space-between;
+  display: flex;
+  box-sizing: border-box;
 }

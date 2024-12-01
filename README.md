@@ -1,8 +1,32 @@
-# React + Vite
+# TravelTrucks - Оренда Кемперів
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Проєкт "TravelTrucks" – це веб-додаток для компанії, що займається орендою кемперів. Користувачі можуть переглядати доступні кемпери, фільтрувати їх за різними критеріями, додавати до обраних, а також переглядати деталі кожного кемпера. Додаток також дозволяє забронювати кемпер через форму бронювання.
 
-Currently, two official plugins are available:
+## Основні функції:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Домашня сторінка** з банером та основним закликом до дії.
+- **Каталог кемперів**: можливість фільтрувати кемпери за локацією, типом кузова та іншими критеріями.
+- **Детальна сторінка кемпера**: огляд характеристик, галерея фото, відгуки користувачів та форма для бронювання.
+- **Обране**: можливість додавати кемпери до списку обраних збережених при оновленні сторінки.
+- **Пагінація та кнопка "Load More"** для довантаження нових кемперів за обраними критеріями.
+
+## Інструкції з використання:
+
+1. Клонувати репозиторій:
+   git clone https://github.com/your-username/traveltrucks.git
+2. Встановити залежності:
+   npm install
+3. Запустити проект локально:
+   npm run dev
+4. Перейдіть за адресою http://localhost:3000 для перегляду проєкту.
+
+Технології:
+React: для побудови інтерфейсу.
+Redux: для керування станом.
+React Router: для маршрутизації.
+Axios: для роботи з API.
+Vite: для бандлінгу.
+CSS: використовується для стилізації.
+
+Автор:
+Darya - Frontend Developer

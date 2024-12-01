@@ -15,6 +15,14 @@
   }
 }
 
+.containerListAndButton {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
 .images {
   width: 292px;
   height: 320px;
@@ -119,4 +127,18 @@ h2 {
   line-height: 24px;
   letter-spacing: -0.08px;
   border: none;
+  transition: background-color 0.3s ease;
+}
+
+.buttonShowMore:hover,
+.buttonShowMore:focus {
+  background: #d84343;
+}
+
+.favoriteIcon {
+  cursor: pointer;
+}
+
+.favorited {
+  fill: rgba(228, 72, 72, 1);
 }

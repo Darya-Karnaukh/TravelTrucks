@@ -11,6 +11,7 @@ import Features from "../../components/Features/Features.jsx";
 
 const Camper = () => {
   const { id } = useParams();
+
   const campers = useSelector(selectCampers);
   const [activeTab, setActiveTab] = useState("features");
 

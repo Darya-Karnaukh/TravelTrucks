@@ -96,7 +96,7 @@ const Catalog = () => {
     if (appliedFilters) {
       const filtered = applyFilters(campers, appliedFilters);
       nextPageData = filtered.slice(page * limit, (page + 1) * limit);
-      setFilteredCampers((prev) => [...prev, ...nextPageData]); // додаємо нові кемпери до попередніх
+      setFilteredCampers((prev) => [...prev, ...nextPageData]);
       setPage(page + 1);
     } else {
       const nextPage = page + 1;
@@ -120,7 +120,7 @@ const Catalog = () => {
       />
 
       {loading && !appliedFilters ? (
-        <Loader /> // Показуємо лоадер тільки під час початкового завантаження
+        <Loader />
       ) : (
         <CatalogList
           campers={campersToShow}

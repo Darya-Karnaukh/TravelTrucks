@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  width: 360px;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.vehicleType {
+  display: flex;
+  width: 112px;
+  height: 96px;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid #dadde1;
+  mix-blend-mode: multiply;
+  box-sizing: border-box;
+}
+
+.vehicleType.active {
+  border: 1px solid #e44848;
+}
+
+.type {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  p {
+    color: #101828;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.08px;
+  }
+}

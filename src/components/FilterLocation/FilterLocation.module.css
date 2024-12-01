@@ -1,0 +1,63 @@
+.containerLocation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  p {
+    color: #101828;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.input {
+  display: flex;
+  width: 360px;
+  height: 56px;
+  padding: 18px 20px 18px 48px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  box-sizing: border-box;
+  border: none;
+  color: #101828;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  outline: none;
+}
+
+.containerIcon {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  fill: rgba(108, 113, 123, 1);
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 360px;
+  height: 64px;
+  padding: 10px 0px 10px 48px;
+  list-style-type: none;
+  border: 1px solid #ddd;
+  overflow-y: auto;
+  background-color: transparent;
+  gap: 8px;
+  width: 100%;
+}
+
+.suggestions li {
+  cursor: pointer;
+}

@@ -7,6 +7,7 @@ import Location from "../../components/Location/Location";
 import { useState } from "react";
 import FormCamper from "../../components/FormCamper/FormCamper.jsx";
 import Reviews from "../../components/Reviews/Reviews.jsx";
+import Features from "../../components/Features/Features.jsx";
 
 const Camper = () => {
   const { id } = useParams();
@@ -76,7 +77,7 @@ const Camper = () => {
       <div className={s.containerFeaturesAndForm}>
         {activeTab === "features" && (
           <div>
-            {/* Тут ви можете відобразити компоненти "Features", наприклад */}
+            <Features camper={camper} />
           </div>
         )}
         {activeTab === "reviews" && <Reviews reviews={camper.reviews} />}

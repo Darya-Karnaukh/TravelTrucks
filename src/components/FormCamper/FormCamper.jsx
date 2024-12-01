@@ -42,10 +42,7 @@ const FormCamper = () => {
       .required("This field is required"),
     email: Yup.string()
       .email("Invalid email format")
-      .matches(
-        /^[a-zA-Z0-9._%+-]+@(gmail|yahoo|outlook)\.com$/,
-        "Email must be from gmail, yahoo, or outlook"
-      )
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email format")
       .required("This field is required"),
     date: Yup.date()
       .min(new Date(), "Select a date between today")

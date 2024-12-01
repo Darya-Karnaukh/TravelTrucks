@@ -3,12 +3,17 @@ import SvgIcon from "../../hooks/SvgIcon.jsx";
 import s from "../Header/Header.module.css";
 import { useDispatch } from "react-redux";
 import { getCampers } from "../../redux/campers/operations.js";
+import { useEffect } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
   const onClick = () => {
     dispatch(getCampers());
   };
+
+  useEffect(() => {
+    dispatch(getCampers());
+  }, [dispatch]);
   return (
     <header className={s.header}>
       <NavLink to="/">

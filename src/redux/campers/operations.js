@@ -3,12 +3,28 @@ import { apiCampers } from "../../config/apiCampers.js";
 
 export const getCampers = createAsyncThunk(
   "campers/getAll",
-  async ({ page = 1, limit = 4 }, thunkAPI) => {
+  async ({ page = 1, limit = 4, filters = {} }, thunkAPI) => {
     try {
-      const response = await apiCampers.get("/campers", {
-        params: { page, limit },
-      });
+      const queryParams = new URLSearchParams({
+        page,
+        limit,
+        ...filters,
+      }).toString();
+
+      const response = await apiCampers.get(`/campers?${queryParams}`);
       return { items: response.data.items, total: response.data.total };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getCamperById = createAsyncThunk(
+  "campers/getById",
+  async (id, thunkAPI) => {
+    try {
+      const response = await apiCampers.get(`/campers/${id}`);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

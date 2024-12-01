@@ -1,3 +1,5 @@
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import CatalogList from "../../components/CatalogList/CatalogList.jsx";
 import FilterList from "../../components/FilterList/FilterList.jsx";
 import { useDispatch, useSelector } from "react-redux";
@@ -83,9 +85,29 @@ const Catalog = () => {
 
   const handleSearch = () => {
     const result = applyFilters(campers, filters);
+
     setFilteredCampers(result.slice(0, limit));
     setAppliedFilters(filters);
     setPage(1);
+    if (result.length > 0) {
+      iziToast.success({
+        title: "Success!",
+        message: "Filters successfully applied!",
+        position: "topRight",
+        backgroundColor: "#28a745",
+        color: "white",
+        timeout: 3000,
+      });
+    } else {
+      iziToast.warning({
+        title: "No results",
+        message: "No campers found with the selected filters.",
+        position: "topRight",
+        backgroundColor: "#dc3545",
+        color: "white",
+        timeout: 3000,
+      });
+    }
   };
 
   const handleLoadMore = () => {

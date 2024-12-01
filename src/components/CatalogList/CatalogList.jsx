@@ -1,3 +1,5 @@
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 import SvgIcon from "../../hooks/SvgIcon";
 import s from "./CatalogList.module.css";
 import ParametersCampers from "../ParametersCampers/ParametersCampers.jsx";
@@ -30,9 +32,25 @@ const CatalogList = ({ campers, onLoadMore, hasMore, loading }) => {
   const toggleFavorite = (camperId) => {
     if (favorites.some((item) => item.id === camperId)) {
       dispatch(removeFavorite({ id: camperId }));
+      iziToast.success({
+        title: "Success!",
+        message: "This camper has been removed from favorites.",
+        position: "topRight",
+        backgroundColor: "#f44336",
+        color: "white",
+        timeout: 3000,
+      });
     } else {
       const camper = campers.find((camper) => camper.id === camperId);
       dispatch(addFavorite(camper));
+      iziToast.success({
+        title: "Success!",
+        message: "This camper has been successfully added to favorites.",
+        position: "topRight",
+        backgroundColor: "#28a745",
+        color: "white",
+        timeout: 3000,
+      });
     }
   };
   return (

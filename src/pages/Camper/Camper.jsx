@@ -1,23 +1,35 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectCampers } from "../../redux/campers/selectors.js";
+import { getCamperById } from "../../redux/campers/operations.js";
 import s from "./Camper.module.css";
 import SvgIcon from "../../hooks/SvgIcon.jsx";
 import Location from "../../components/Location/Location";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormCamper from "../../components/FormCamper/FormCamper.jsx";
 import Reviews from "../../components/Reviews/Reviews.jsx";
 import Features from "../../components/Features/Features.jsx";
 
+import Loader from "../../components/Loader/Loader";
+
 const Camper = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
 
-  const campers = useSelector(selectCampers);
+  const { camper, loading, error } = useSelector((state) => state.campers);
+
   const [activeTab, setActiveTab] = useState("features");
 
-  const camper = campers.find((item) => item.id === id);
+  useEffect(() => {
+    if (id) {
+      dispatch(getCamperById(id));
+    }
+  }, [id, dispatch]);
 
-  if (!camper) {
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
     return <p>Camper not found!</p>;
   }
 

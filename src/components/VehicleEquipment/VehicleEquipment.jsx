@@ -61,7 +61,7 @@ const VehicleEquipment = ({
             <input
               type="checkbox"
               style={{ display: "none" }}
-              checked={parameters[param.key]}
+              checked={parameters[param.key] || false}
               onChange={(e) => onFilterChange(param.key, e.target.checked)}
             />
           </label>

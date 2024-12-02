@@ -12,6 +12,13 @@ const initialState = {
 const slice = createSlice({
   name: "campers",
   initialState,
+  reducers: {
+    resetSearchResults: (state) => {
+      state.campers = [];
+      state.total = 0;
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCampers.pending, (state) => {
@@ -46,4 +53,5 @@ const slice = createSlice({
   },
 });
 
+export const { resetSearchResults } = slice.actions;
 export const campersReducer = slice.reducer;

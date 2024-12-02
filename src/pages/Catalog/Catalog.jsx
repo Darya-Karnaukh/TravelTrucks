@@ -39,8 +39,10 @@ const Catalog = () => {
   const [appliedFilters, setAppliedFilters] = useState(null);
 
   useEffect(() => {
-    dispatch(getCampers({ page: 1, limit }));
-  }, [dispatch]);
+    if (campers.length === 0) {
+      dispatch(getCampers({ page: 1, limit }));
+    }
+  }, [dispatch, campers.length, limit]);
 
   const applyFilters = (campers, filters) => {
     return campers.filter((camper) => {
@@ -83,12 +85,34 @@ const Catalog = () => {
     }));
   };
 
-  const handleSearch = () => {
-    const result = applyFilters(campers, filters);
+  const resetFilters = () => {
+    setFilters({
+      location: "",
+      vehicleType: "",
+      TV: false,
+      AC: false,
+      kitchen: false,
+      bathroom: false,
+      microwave: false,
+      water: false,
+      radio: false,
+      gas: false,
+      transmission: "",
+      engine: "",
+    });
+    setAppliedFilters(null);
+    setPage(1);
+    setFilteredCampers([]);
+  };
 
+  const handleSearch = () => {
+    resetFilters();
+
+    const result = applyFilters(campers, filters);
     setFilteredCampers(result.slice(0, limit));
     setAppliedFilters(filters);
     setPage(1);
+
     if (result.length > 0) {
       iziToast.success({
         title: "Success!",

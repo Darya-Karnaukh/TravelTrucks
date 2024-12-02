@@ -1,11 +1,14 @@
+import { useDispatch } from "react-redux";
 import ButtonSearch from "../ButtonSearch/ButtonSearch.jsx";
 import VehicleEquipment from "../VehicleEquipment/VehicleEquipment.jsx";
 import FilterLocation from "../FilterLocation/FilterLocation.jsx";
 import s from "./FilterList.module.css";
-
 import VehicleType from "../VehicleType/VehicleType.jsx";
+import { resetSearchResults } from "../../redux/campers/slice.js";
 
 const FilterList = ({ filters, onFilterChange, onSearch }) => {
+  const dispatch = useDispatch();
+
   const handleLocationChange = (location) => {
     onFilterChange("location", location);
   };
@@ -16,6 +19,11 @@ const FilterList = ({ filters, onFilterChange, onSearch }) => {
 
   const handleDynamicChange = (key, value) => {
     onFilterChange(key, value);
+  };
+
+  const handleSearch = () => {
+    dispatch(resetSearchResults());
+    onSearch();
   };
 
   return (
@@ -48,7 +56,7 @@ const FilterList = ({ filters, onFilterChange, onSearch }) => {
           />
         </div>
       </div>
-      <ButtonSearch onClick={onSearch} />
+      <ButtonSearch onClick={handleSearch} />
     </div>
   );
 };

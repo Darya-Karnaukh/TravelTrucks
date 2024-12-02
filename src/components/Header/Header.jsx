@@ -7,21 +7,28 @@ import { useEffect } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const limit = 4;
   const onClick = () => {
-    dispatch(getCampers());
+    dispatch(getCampers({ page: 1, limit }));
+  };
+
+  const handleHomeClick = () => {
+    onClick();
   };
 
   useEffect(() => {
     dispatch(getCampers());
   }, [dispatch]);
+
   return (
     <header className={s.header}>
-      <NavLink to="/">
+      <NavLink to="/" onClick={handleHomeClick}>
         <SvgIcon name="icon-Logo" width="136" height="16" />
       </NavLink>
       <nav className={s.navigationHeader}>
         <NavLink
           to="/"
+          onClick={handleHomeClick}
           className={({ isActive }) =>
             isActive ? `${s.navigationLink} ${s.activeLink}` : s.navigationLink
           }

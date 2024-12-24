@@ -26,9 +26,7 @@ const ParametersCampers = ({ parameters }) => {
   };
 
   return (
-    <div className={s.wrapperCategories}>
-      {arrParameters.map(renderCategory)}
-    </div>
+    <ul className={s.wrapperCategories}>{arrParameters.map(renderCategory)}</ul>
   );
 };
 

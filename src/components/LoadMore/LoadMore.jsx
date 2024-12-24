@@ -9,7 +9,7 @@ const LoadMore = ({ onLoadMore, hasMore, loading }) => {
   return (
     <div className={s.loadMoreContainer}>
       {loading ? (
-        <Loader /> // Покажемо лоадер при завантаженні нових даних
+        <Loader />
       ) : (
         <button
           className={s.buttonLoadMore}

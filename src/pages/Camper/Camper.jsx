@@ -25,7 +25,7 @@ const Camper = () => {
     }
   }, [id, dispatch]);
 
-  if (loading) {
+  if (loading || !camper) {
     return <Loader />;
   }
 
